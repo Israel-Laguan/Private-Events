@@ -50,6 +50,11 @@
   <% end %>
 </div>
 
+<div>
+  <p><%= @event.participates.count %> <%= (@event.participates.count) == 1 ? "participate" : "participates" %></p>
+  <%= button_to "participate", event_participates_path(@event), method: :post %>
+</div>
+
 <%= render 'comments/form' %>
 
 <div>

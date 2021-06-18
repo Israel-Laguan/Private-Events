@@ -57,6 +57,8 @@
           <td><%= button_to 'Destroy', event, method: :delete, data: { confirm: "Are you sure to delete this event?" }, class: 'btn btn-danger'%></td>
         <% end %>
         <td><p><%= event.likes.count %> <%= (event.likes.count) == 1 ? 'Like' : 'Likes'%></p></td>
+        <td>  <p><%= event.participates.count %> <%= (event.participates.count) == 1 ? "participate" : "participates" %></p></td>
+
 
       </tr>
       <% end %>
