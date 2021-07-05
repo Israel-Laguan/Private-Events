@@ -41,16 +41,17 @@
   <td><%= button_to 'Destroy', @event, method: :delete, data: { confirm: "Are you sure to delete this event?" }, class: 'btn btn-danger'%></td>
 <% end %>
 <div>
-  <p><%= @event.likes.count %> <%= (@event.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+  <p><%= @event.likes.count %> <%= (@event.likes.count) == 1 ? 'Like' : 'Likes'%>
   <% pre_like = @event.likes.find { |like| like.user_id == @current_user.id} %>
   <% if pre_like %>
     <%= button_to 'Unlike', event_like_path(@event, pre_like), method: :delete %>
   <% else %>
     <%= button_to 'Like', event_likes_path(@event), method: :post %>
-  <% end %>
+  <% end %></p>
 </div>
-
-<%= render 'comments/form' %>
+<div>  
+  <%= render 'comments/form' %>
+</div>
 
 <div>
   <% @comments.each do |comment| %>
@@ -76,4 +77,30 @@
   <% end %>
 </div>
 
+<div>
+  <%= render 'user_feedbacks/form' %>
+</div>
+<div>
+  <hr>
+  <ul>
+    <% @feedbacks.each do |feedback| %>
+      <% if feedback.comment !=nil %>
+        <li>
+          <div class='review-rating' data-score = '<%= feedback.rating %>'></div>
+          "<%= feedback.comment %>" by <%= feedback.user.name %>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+  <hr>
+</div>
 
+<script>
+  $('.review-rating').raty({
+  readOnly: true,
+  score: function() {
+  return $(this).attr('data-score');
+  },
+  path: '/assets/'
+  });
+</script>

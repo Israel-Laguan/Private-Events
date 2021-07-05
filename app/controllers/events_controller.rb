@@ -16,6 +16,8 @@ class EventsController < ApplicationController
     @comment = Comment.new
     @comments = @event.comments.order("created_at DESC")
     @answer = Answer.new
+    @feedbacks = @event.user_feedbacks
+    @user_feedback = UserFeedback.new
   end
 
   # GET /events/new

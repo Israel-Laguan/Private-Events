@@ -1,0 +1,23 @@
+<p> add review </p>
+
+<%= form_with model: [@event, @user_feedback] do |f| %>
+	<%= f.hidden_field :user_id, value: @current_user.id %>
+	<%= f.hidden_field :event_id, value: @event.id %>
+
+	<div id = 'rating-form'> 
+		<label> Rating</label> 
+	</div>
+	
+	<%= f.label :comment %>
+	<%= f.text_area :comment %>
+
+	<%= f.submit "submit" %>
+<% end %>
+
+<script>
+	$('#rating-form').raty({
+	path: '/assets/',
+	scoreName: 'user_feedback[rating]'
+	});
+</script>
+

@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     sign_out
     redirect_to root_url, notice: 'Logged out!'
   end
